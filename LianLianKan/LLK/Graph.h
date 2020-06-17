@@ -1,4 +1,5 @@
 #pragma once
+#include "global.h"
 //图数据结构类
 class CGraph
 {
@@ -8,9 +9,8 @@ public:
 
 	void InitGraph();//初始化图
 
-	#define MAX_VERTEX 16//顶点个数
-	typedef int Vertices[MAX_VERTEX];//顶点
-	typedef bool AdjMatrix[MAX_VERTEX][MAX_VERTEX];//边
+	typedef int Vertices[MAX_VERTEX_NUM];//顶点
+	typedef bool AdjMatrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM];//边
 
 protected:
 	Vertices m_Vertices;//保存顶点

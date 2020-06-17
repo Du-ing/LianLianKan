@@ -20,7 +20,7 @@ void CGameControl::StartGame()
 //获取对应行号列号元素的值
 int CGameControl::GetElement(int nRow, int nCol)
 {
-	return m_graph.GetVertex(nRow * 4 + nCol);
+	return m_graph.GetVertex(nRow * MAX_WID + nCol);
 }
 
 void CGameControl::SetFirstPoint(int nRow, int nCol)
@@ -36,7 +36,7 @@ void CGameControl::SetSecondPoint(int nRow, int nCol)
 }
 
 //判断两次选择的点是否连通
-bool CGameControl::Link(Vertex Path[16], int &nVertexNum)
+bool CGameControl::Link(Vertex Path[MAX_VERTEX_NUM], int &nVertexNum)
 {
 	//判断两个是否在同一位置
 	if(m_ptSelFirst.row == m_ptSelSecond.row && m_ptSelFirst.col == m_ptSelSecond.col)
@@ -44,9 +44,9 @@ bool CGameControl::Link(Vertex Path[16], int &nVertexNum)
 		return false;
 	}
 	//判断两个图片元素是否相同
-	int Index1 = m_graph.GetVertex(m_ptSelFirst.row * 4 + m_ptSelFirst.col);
-	int Index2 = m_graph.GetVertex(m_ptSelSecond.row * 4 + m_ptSelSecond.col);
-	if(Index1 != Index2 || Index1 == -1 || Index2 == -1)
+	int Index1 = m_graph.GetVertex(m_ptSelFirst.row * MAX_WID + m_ptSelFirst.col);
+	int Index2 = m_graph.GetVertex(m_ptSelSecond.row * MAX_WID + m_ptSelSecond.col);
+	if(Index1 != Index2 || Index1 == BLANK || Index2 == BLANK)
 	{
 		return false;
 	}
@@ -74,4 +74,30 @@ bool CGameControl::IsWin(void)
 		return true;
 	}
 	return false;
+}
+
+//提示功能
+bool CGameControl::Help(Vertex avPath[MAX_VERTEX_NUM], int& Vexnum)
+{
+	CGameLogic gameLogic;
+	//判断是否为空
+	if(gameLogic.IsBlank(m_graph))
+	{
+		return false;
+	}
+	//查找提示路径
+	if(gameLogic.SearchValidPath(m_graph))
+	{
+		//返回提示的路径顶点
+		Vexnum = gameLogic.GetVertexPath(avPath);
+		return true;
+	}
+	return false;
+}
+
+//重排
+void CGameControl::Reset(void)
+{
+	CGameLogic gameLogic;
+	gameLogic.ResetGraph(m_graph);
 }

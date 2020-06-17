@@ -11,10 +11,10 @@ public:
 	void InitMap(CGraph &graph);//初始化地图
 	bool IsLink(CGraph &graph, Vertex v1, Vertex v2);//连接判断
 	void Clear(CGraph &graph, Vertex v1, Vertex v2);//元素消除后置空
-	int GetVertexPath(Vertex avPath[16]);//获取消除的路径
+	int GetVertexPath(Vertex avPath[MAX_VERTEX_NUM]);//获取消除的路径
 
 protected:
-	int m_anPath[16];//保存路径的顶点索引
+	int m_anPath[MAX_VERTEX_NUM];//保存路径的顶点索引
 	int m_nVexNum;//路径中顶点个数
 	int m_nCorner;//保存拐点数
 
@@ -26,5 +26,7 @@ public:
 	void PopVertex(void);
 	bool IsCorner(void);
 	bool IsBlank(CGraph &graph);
+	bool SearchValidPath(CGraph &graph);
+	void ResetGraph(CGraph& graph);
 };
 

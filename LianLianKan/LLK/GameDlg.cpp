@@ -15,16 +15,16 @@ CGameDlg::CGameDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CGameDlg::IDD, pParent)
 {
 	//游戏区距离边框的距离
-	m_ptGameTop.x = 50;
-    m_ptGameTop.y = 50;
+	m_ptGameTop.x = MAP_LEFT;
+    m_ptGameTop.y = MAP_TOP;
 	//元素图片大小
-	m_sizeElem.cx = 40;
-	m_sizeElem.cy = 40;
+	m_sizeElem.cx = PIC_WIDTH;
+	m_sizeElem.cy = PIC_HEIGHT;
 	//初始化游戏更新区域
 	m_rtGameRect.top = m_ptGameTop.y;
 	m_rtGameRect.left = m_ptGameTop.x;
-	m_rtGameRect.right = m_rtGameRect.left + m_sizeElem.cx * 4;
-	m_rtGameRect.bottom = m_rtGameRect.top + m_sizeElem.cy * 4;
+	m_rtGameRect.right = m_rtGameRect.left + m_sizeElem.cx * MAX_WID;
+	m_rtGameRect.bottom = m_rtGameRect.top + m_sizeElem.cy * MAX_WID;
 	//初始点的标识
 	m_bFirstPoint = true;
 	m_bPlaying = false;//游戏未开始
@@ -44,6 +44,8 @@ BEGIN_MESSAGE_MAP(CGameDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_BN_CLICKED(IDC_BUTTON_START, &CGameDlg::OnClickedButtonStart)
 	ON_WM_LBUTTONUP()
+	ON_BN_CLICKED(IDC_BUTTON_TISHI, &CGameDlg::OnClickedButtonTishi)
+	ON_BN_CLICKED(IDC_BUTTON_RESET, &CGameDlg::OnClickedButtonReset)
 END_MESSAGE_MAP()
 
 
@@ -158,12 +160,12 @@ void CGameDlg::UpdateMap()
 	m_dcMem.BitBlt(m_rtGameRect.left, m_rtGameRect.top, m_rtGameRect.Width(), 
 		m_rtGameRect.Height(), &m_dcBG, m_rtGameRect.left, m_rtGameRect.top, SRCCOPY);
 	//依次加载图片元素
-	for(int i=0;i<4;i++)
+	for(int i = 0;i < MAX_WID;i++)
 	{
-		for(int j=0;j<4;j++)
+		for(int j = 0;j < MAX_WID;j++)
 		{
 			int nInfo = m_gameControl.GetElement(i, j);
-			if(nInfo == -1)//元素为空则跳过
+			if(nInfo == BLANK)//元素为空则跳过
 			{
 				continue;
 			}
@@ -187,7 +189,7 @@ void CGameDlg::OnLButtonUp(UINT nFlags, CPoint point)
 	int nRow = (point.y - m_ptGameTop.y)/m_sizeElem.cy;
 	int nCol = (point.x - m_ptGameTop.x)/m_sizeElem.cx;
 
-	if(nRow > 3 || nCol > 3)
+	if(nRow > MAX_WID-1 || nCol > MAX_WID-1)
 	{
 		return CDialogEx::OnLButtonUp(nFlags, point);
 	}
@@ -204,7 +206,7 @@ void CGameDlg::OnLButtonUp(UINT nFlags, CPoint point)
 		m_gameControl.SetSecondPoint(nRow, nCol);
 
 		//路径
-		Vertex Path[16];
+		Vertex Path[MAX_VERTEX_NUM];
 		int vexNum = 0;//顶点数
 		//判断是否可消除
 		if(m_gameControl.Link(Path, vexNum))
@@ -240,7 +242,7 @@ void CGameDlg::DrawTipFrame(int nRow, int nCol)
 }
 
 //绘制连线
-void CGameDlg::DrawTipLine(Vertex Path[4], int vertexNum)
+void CGameDlg::DrawTipLine(Vertex Path[MAX_VERTEX_NUM], int vertexNum)
 {
 	//获取DC
 	CClientDC dc(this);
@@ -259,4 +261,33 @@ void CGameDlg::DrawTipLine(Vertex Path[4], int vertexNum)
 			m_ptGameTop.y + Path[i + 1].row * m_sizeElem.cy + m_sizeElem.cy / 2);
 	}
 	dc.SelectObject(pOldPen);
+}
+
+//点击提示按钮
+void CGameDlg::OnClickedButtonTishi()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	Vertex avPath[MAX_VERTEX_NUM];//存储提示路径点
+	int Vexnum;//个数
+	//提示路径
+	if(m_gameControl.Help(avPath, Vexnum))
+	{
+		//给点击的两个顶点绘制矩形框
+		DrawTipFrame(avPath[0].row, avPath[0].col);
+		DrawTipFrame(avPath[Vexnum - 1].row, avPath[Vexnum - 1].col);
+		Sleep(200);//延迟0.2S
+		InvalidateRect(m_rtGameRect, FALSE);
+	}
+}
+
+//点击重排按钮
+void CGameDlg::OnClickedButtonReset()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//重排
+	m_gameControl.Reset();
+	//更新界面
+	UpdateMap();
+	//界面重绘
+	InvalidateRect(m_rtGameRect, FALSE); 
 }

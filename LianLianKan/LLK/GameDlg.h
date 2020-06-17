@@ -44,10 +44,12 @@ protected:
 	//给元素画框
 	void DrawTipFrame(int nRow, int nCol);
 	//元素连线
-	void DrawTipLine(Vertex Path[4], int vertexNum);
+	void DrawTipLine(Vertex Path[MAX_VERTEX_NUM], int vertexNum);
 public:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg void OnClickedButtonStart();
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnClickedButtonTishi();
+	afx_msg void OnClickedButtonReset();
 };
