@@ -1,19 +1,12 @@
-﻿生成启动时间为 2020/6/17 22:28:48。
+﻿生成启动时间为 2020/6/18 0:35:24。
      1>项目“C:\Users\fy\Desktop\LianLianKan\LLK\LLK.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\LLK.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
          所有输出均为最新。
-         e:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\LLK.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt GameControl.cpp GameDlg.cpp GameLogic.cpp Graph.cpp LLKDlg.cpp
-         Graph.cpp
-         正在生成代码...
-         正在跳过...(未检测到相关更改)
-         LLKDlg.cpp
-         GameLogic.cpp
-         GameDlg.cpp
-         GameControl.cpp
-       ResourceCompile:
          所有输出均为最新。
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /l"0x0804" /IDebug\ /nologo /fo"Debug\LLK.res" LLK.rc 
        ManifestResourceCompile:
          所有输出均为最新。
        Link:
@@ -39,4 +32,4 @@
 
 生成成功。
 
-已用时间 00:00:00.59
+已用时间 00:00:00.57

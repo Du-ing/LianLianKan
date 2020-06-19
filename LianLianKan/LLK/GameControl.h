@@ -19,7 +19,7 @@ private:
 	Vertex m_ptSelFirst;//第一次选择点
 	Vertex m_ptSelSecond;//第二次选择点
 public:
-	bool IsWin(void);
+	int IsWin(int nTime);//判断胜负
 	bool Help(Vertex avPath[MAX_VERTEX_NUM], int& Vexnum);
 	void Reset(void);
 };

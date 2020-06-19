@@ -20,6 +20,7 @@ protected:
 	CDC m_dcBG;
 	CDC m_dcElement;//元素DC
 	CDC m_dcMask;//元素背景DC
+	CDC m_dcPause;//暂停图片
 	CRect m_rtGameRect;//游戏更新区域
 	int m_anMap[4][4];//游戏地图
 	CPoint m_ptGameTop;//起始坐标
@@ -30,6 +31,7 @@ protected:
 
 	CGameControl m_gameControl;//游戏控制
 	bool m_bPlaying;//游戏是否结束
+	bool m_bPause;//游戏是否暂停
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 	DECLARE_MESSAGE_MAP()
@@ -52,4 +54,8 @@ public:
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnClickedButtonTishi();
 	afx_msg void OnClickedButtonReset();
+	CProgressCtrl m_GameProgress;
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	void JudgeWin(void);
+	afx_msg void OnClickedButtonPause();
 };

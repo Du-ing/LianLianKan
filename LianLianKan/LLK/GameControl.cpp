@@ -64,16 +64,24 @@ bool CGameControl::Link(Vertex Path[MAX_VERTEX_NUM], int &nVertexNum)
 }
 
 //判断胜负
-bool CGameControl::IsWin(void)
+int CGameControl::IsWin(int nTime)
 {
 	CGameLogic gameLogic;
+	//如果时间到，则游戏失败
+	if(nTime <= 0)
+	{
+		//清除图
+		m_graph.ClearGraph();
+		return GAME_LOSE;
+	}
+	//全部消除
 	if(gameLogic.IsBlank(m_graph))
 	{
 		//胜利后游戏结束，清理图
 		m_graph.ClearGraph();
-		return true;
+		return GAME_SUCCESS;
 	}
-	return false;
+	return GAME_PLAY;
 }
 
 //提示功能
