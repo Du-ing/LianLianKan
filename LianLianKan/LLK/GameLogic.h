@@ -20,7 +20,7 @@ protected:
 
 public:
 	void UpdateArc(CGraph& graph, int nRow, int Col);//¸üÐÂ±ß
-	bool SearchPath(CGraph& graph, int nV0, int nV1);
+	bool SearchPath(CGraph& graph, int nV0, int nV1);//ÕÒÂ·¾¶
 	bool IsExist(int nVi);
 	void PushVertex(int nV);
 	void PopVertex(void);

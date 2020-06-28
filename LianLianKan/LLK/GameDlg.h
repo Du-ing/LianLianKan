@@ -58,4 +58,5 @@ public:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	void JudgeWin(void);
 	afx_msg void OnClickedButtonPause();
+	afx_msg void OnBnClickedButtonHelping();
 };

@@ -7,6 +7,8 @@
 #include "LLKDlg.h"
 #include "afxdialogex.h"
 #include "GameDlg.h"
+#include "HelpDialog.h"
+#include "RankDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -65,6 +67,10 @@ BEGIN_MESSAGE_MAP(CLLKDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON_BASIC, &CLLKDlg::OnClickedButtonBasic)
+	ON_BN_CLICKED(IDC_BUTTON_HELP, &CLLKDlg::OnBnClickedButtonHelp)
+	ON_BN_CLICKED(IDC_BUTTON_XIUXIAN, &CLLKDlg::OnBnClickedButtonXiuxian)
+	ON_BN_CLICKED(IDC_BUTTON_GUANKA, &CLLKDlg::OnBnClickedButtonGuanka)
+	ON_BN_CLICKED(IDC_BUTTON_RANK, &CLLKDlg::OnBnClickedButtonRank)
 END_MESSAGE_MAP()
 
 
@@ -172,6 +178,41 @@ void  CLLKDlg::InitBackground()
 
 
 void CLLKDlg::OnClickedButtonBasic()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	this->ShowWindow(SW_HIDE);//隐藏主窗口
+	CGameDlg dlg;
+	dlg.DoModal();
+	this->ShowWindow(SW_SHOW);//关闭游戏界面后出现主窗口
+}
+
+
+void CLLKDlg::OnBnClickedButtonHelp()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CHelpDialog dlg;
+	dlg.DoModal();
+}
+
+void CLLKDlg::OnBnClickedButtonRank()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CRankDialog dlg;
+	dlg.DoModal();
+}
+
+
+void CLLKDlg::OnBnClickedButtonXiuxian()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	this->ShowWindow(SW_HIDE);//隐藏主窗口
+	CGameDlg dlg;
+	dlg.DoModal();
+	this->ShowWindow(SW_SHOW);//关闭游戏界面后出现主窗口
+}
+
+
+void CLLKDlg::OnBnClickedButtonGuanka()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	this->ShowWindow(SW_HIDE);//隐藏主窗口

@@ -1,4 +1,3 @@
-
 // LLKDlg.h : м╥нд╪Ч
 //
 
@@ -34,4 +33,8 @@ protected:
 	void InitBackground();
 public:
 	afx_msg void OnClickedButtonBasic();
+	afx_msg void OnBnClickedButtonHelp();
+	afx_msg void OnBnClickedButtonXiuxian();
+	afx_msg void OnBnClickedButtonGuanka();
+	afx_msg void OnBnClickedButtonRank();
 };

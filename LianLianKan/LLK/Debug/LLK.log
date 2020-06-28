@@ -1,4 +1,4 @@
-﻿生成启动时间为 2020/6/18 0:35:24。
+﻿生成启动时间为 2020/6/28 18:14:05。
      1>项目“C:\Users\fy\Desktop\LianLianKan\LLK\LLK.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\LLK.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
@@ -16,8 +16,10 @@
          Debug\GameDlg.obj
          Debug\GameLogic.obj
          Debug\Graph.obj
+         Debug\HelpDialog.obj
          Debug\LLK.obj
          Debug\LLKDlg.obj
+         Debug\RankDialog.obj
          Debug\stdafx.obj
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\LLK.exe.embed.manifest" /manifest Debug\LLK.exe.intermediate.manifest "e:\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
@@ -32,4 +34,4 @@
 
 生成成功。
 
-已用时间 00:00:00.57
+已用时间 00:00:00.46

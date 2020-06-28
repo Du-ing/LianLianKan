@@ -5,6 +5,7 @@
 #include "LLK.h"
 #include "GameDlg.h"
 #include "afxdialogex.h"
+#include "HelpDialog.h"
 
 
 // CGameDlg 对话框
@@ -50,6 +51,7 @@ BEGIN_MESSAGE_MAP(CGameDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_RESET, &CGameDlg::OnClickedButtonReset)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BUTTON_PAUSE, &CGameDlg::OnClickedButtonPause)
+	ON_BN_CLICKED(IDC_BUTTON_HELPING, &CGameDlg::OnBnClickedButtonHelping)
 END_MESSAGE_MAP()
 
 
@@ -383,4 +385,12 @@ void CGameDlg::OnClickedButtonPause()
 		this->GetDlgItem(IDC_BUTTON_PAUSE)->SetWindowTextW(_T("暂停游戏"));
 	}
 	m_bPause = !m_bPause;//暂停表示取反
+}
+
+
+void CGameDlg::OnBnClickedButtonHelping()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CHelpDialog dlg;
+	dlg.DoModal();
 }
